@@ -1,0 +1,35 @@
+@import './../../../../assets/styles/base/variables';
+@import './../../../../assets/styles/base/mixins';
+
+:host {
+  display: flex;
+
+  .component {
+
+    @media @tablets {
+      display: flex;
+    }
+  }
+
+  app-pension-description,
+  app-pension-checker {
+    background: @white;
+    padding: 20px;
+    border: 1px solid @gray;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  app-pension-description {
+    margin: 10px 0 0;
+
+    @media @tablets {
+      width: 300px;
+      margin: 0 0 0 10px;
+    }
+  }
+
+  app-pension-checker {
+    flex: auto;
+  }
+}
