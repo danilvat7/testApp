@@ -7,24 +7,36 @@
     box-shadow: 0 0 6px rgba(0,0,0,0.3);
 
   .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
   }
 }
 
-.heading {
-    h1 {
-      margin: 0;
-      font-size: 30px;
-
-      @media @phones {
-        font-size: 20px;
-      }
-    }
-}
 
 .left-logo {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        margin: 0 0 0 10px;
+        font-size: 30px;
+
+        @media @phones {
+            font-size: 20px;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            margin: 0 84px;
+        }
+    }
+
     .hdv {
         background: @blue;
         color: @white;
@@ -36,6 +48,20 @@
 }
 
 .right-logo {
+    display: flex;
+    align-items: center;
+
+    .text {
+        text-align: right;
+        margin: 0 10px 0 0;
+        font-size: 20px;
+        color: @gray;
+
+        @media @phones {
+          display: none;
+        }
+    }
+
     .nzz {
         background: @black;
         color: @white;
