@@ -1,30 +1,45 @@
 @import './../../../../assets/styles/base/variables';
+@import './../../../../assets/styles/base/mixins';
 
-.header {
+.header-holder {
     background: @white;
-    .header-holder {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: @white;
-        padding: 15px 0;
+    padding: 15px 0;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.heading {
+    h1 {
+      margin: 0;
+      font-size: 30px;
+
+      @media @phones {
+        font-size: 20px;
+      }
     }
-    .left-logo {
-        .hdv {
-            background: @blue;
-            color: @white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+}
+
+.left-logo {
+    .hdv {
+        background: @blue;
+        color: @white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
     }
-    .right-logo {
-        .nzz {
-            background: @black;
-            color: @white;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+}
+
+.right-logo {
+    .nzz {
+        background: @black;
+        color: @white;
+        padding: 10px 20px;
+        cursor: pointer;
     }
 }

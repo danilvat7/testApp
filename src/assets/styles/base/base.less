@@ -1,4 +1,49 @@
-.component {
-    width: 90%;
-    margin: 0 auto;
+html, body, app-root, app-home {
+    height: 100%;
+}
+
+app-home {
+  display: flex;
+  flex-direction: column;
+  padding: 69px 0 70px;
+  align-items: center;
+  background: #fbfbfb;
+  color: #6f6f6f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  margin: auto auto !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  overflow-y: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.header,
+.footer {
+    position: fixed;
+    height: 70px;
+    width: 100%;
+}
+
+.header {
+    top: 0;
+}
+
+.footer {
+    bottom: 0;
+}
+
+h1 {
+    color: @gray;
 }
