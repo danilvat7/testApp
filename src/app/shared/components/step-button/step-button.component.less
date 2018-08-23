@@ -1,0 +1,28 @@
+.step-btn {
+    .fas {
+        display: none;
+        position: absolute;
+        top: 0;
+    }
+    .step-btn-label {
+        position: relative;
+    }
+    &.next {
+        .step-btn-label {
+            padding-right: 40px;
+        }
+        .fa-chevron-right {
+            display: block;
+            right: 0;
+        }
+    }
+    &.prev {
+        .step-btn-label {
+            padding-left: 40px;
+        }
+        .fa-chevron-left {
+            display: block;
+            left: 0;
+        }
+    }
+}

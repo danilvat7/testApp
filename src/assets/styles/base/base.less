@@ -1,4 +1,33 @@
+html, body {
+    height: 100%;
+}
+
+.content-wrapper {
+    padding: 70px 0;
+    overflow-y: auto;
+    height: calc(100% - 140px);
+}
+
 .component {
     width: 90%;
     margin: 0 auto;
+}
+
+.header,
+.footer {
+    position: fixed;
+    height: 70px;
+    width: 100%;
+}
+
+.header {
+    top: 0;
+}
+
+.footer {
+    bottom: 0;
+}
+
+h1 {
+    color: @gray;
 }
