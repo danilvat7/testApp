@@ -3,7 +3,7 @@ import {
   OnInit,
   ElementRef,
   ViewChild,
-  AfterViewInit
+  AfterViewInit, ViewEncapsulation
 } from '@angular/core';
 import * as d3 from 'd3';
 
@@ -35,12 +35,13 @@ const MARGINS = {
   top: 20,
   right: 20,
   bottom: 20,
-  left: 50
+  left: 80
 };
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.less']
+  styleUrls: ['./graph.component.less'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GraphComponent implements OnInit, AfterViewInit {
   @ViewChild('chart')
@@ -76,7 +77,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
       .line()
       .x( (d: any) => {
         console.log(d);
-        
+
         return this.xScale(d.age);
       })
       .y( (d: any) => {
