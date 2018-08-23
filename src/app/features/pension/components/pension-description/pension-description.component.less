@@ -1,0 +1,34 @@
+@import './../../../../../assets/styles/base/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  p {
+    margin: 0 0 20px;
+  }
+}
+
+.income,
+.pension,
+.negative {
+  white-space: nowrap;
+}
+
+.income {
+  color: @yellow;
+}
+
+.pension {
+  color: @green;
+}
+
+.negative {
+  color: @red;
+
+  span {
+    border-bottom: 3px solid @red;
+    font-size: 20px;
+  }
+}

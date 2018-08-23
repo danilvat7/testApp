@@ -9,9 +9,10 @@ import { PensionComponent } from './containers/pension.component';
 
 // components
 import { PensionCheckerComponent } from './components';
+import { PensionDescriptionComponent } from "./components/pension-description/pension-description.component";
 
 @NgModule({
   imports: [CommonModule, PensionRoutingModule],
-  declarations: [PensionComponent, PensionCheckerComponent]
+  declarations: [PensionComponent, PensionCheckerComponent, PensionDescriptionComponent]
 })
 export class PensionModule {}
