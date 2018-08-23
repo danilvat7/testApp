@@ -3,40 +3,96 @@ import {
   OnInit,
   ElementRef,
   ViewChild,
-  AfterViewInit, ViewEncapsulation
+  AfterViewInit,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+  HostListener
 } from '@angular/core';
 import * as d3 from 'd3';
 
-const chartData: any[] = [
-  { 'age': '50', 'money': '92000' },
-  { 'age': '51', 'money': '92000' },
-  { 'age': '52', 'money': '92000' },
-  { 'age': '53', 'money': '92000' },
-  { 'age': '54', 'money': '92000' },
-  { 'age': '55', 'money': '92000' },
-  { 'age': '56', 'money': '92000' },
-  { 'age': '57', 'money': '92000' },
-  { 'age': '58', 'money': '92000' },
-  { 'age': '59', 'money': '92000' },
-  { 'age': '60', 'money': '92000' },
-  { 'age': '61', 'money': '92000' },
-  { 'age': '62', 'money': '92000' },
-  { 'age': '63', 'money': '92000' },
-  { 'age': '64', 'money': '92000' },
-  { 'age': '65', 'money': '92000' },
-  // { 'age': '64', 'money': '80000' },
-  // { 'age': '66', 'money': '45000' },
-  // { 'age': '66', 'money': '40000' }
+interface PensionData {
+  age: string;
+  money: string | number;
+}
+
+const chartData1: PensionData[] = [
+  { age: '50', money: '82000' },
+  { age: '51', money: '82500' },
+  { age: '52', money: '83000' },
+  { age: '53', money: '83500' },
+  { age: '54', money: '84000' },
+  { age: '55', money: '84500' },
+  { age: '56', money: '85000' },
+  { age: '57', money: '85500' },
+  { age: '58', money: '86000' },
+  { age: '59', money: '86500' },
+  { age: '60', money: '87000' },
+  { age: '61', money: '87500' },
+  { age: '62', money: '88000' },
+  { age: '63', money: '88500' },
+  { age: '64', money: '65000' },
+  { age: '65', money: '45000' },
+  { age: '66', money: '45000' },
+  { age: '67', money: '45000' },
+  { age: '68', money: '45000' },
+  { age: '69', money: '45000' },
+  { age: '70', money: '45000' },
+  { age: '71', money: '45000' },
+  { age: '72', money: '45000' },
+  { age: '73', money: '45000' },
+  { age: '74', money: '45000' },
+  { age: '75', money: '45000' },
+  { age: '76', money: '45000' },
+  { age: '77', money: '45000' },
+  { age: '78', money: '45000' },
+  { age: '79', money: '45000' },
+  { age: '80', money: '45000' },
+  { age: '81', money: '45000' },
+  { age: '82', money: '45000' },
+  { age: '83', money: '45000' },
+  { age: '84', money: '45000' },
+  { age: '85', money: '45000' }
 ];
 
-const WIDTH = 500;
-const HEIGHT = 500;
-const MARGINS = {
-  top: 20,
-  right: 20,
-  bottom: 20,
-  left: 80
-};
+const chartData2: PensionData[] = [
+  { age: '50', money: '72000' },
+  { age: '51', money: '72500' },
+  { age: '52', money: '73000' },
+  { age: '53', money: '73500' },
+  { age: '54', money: '74000' },
+  { age: '55', money: '74500' },
+  { age: '56', money: '75000' },
+  { age: '57', money: '75500' },
+  { age: '58', money: '76000' },
+  { age: '59', money: '76500' },
+  { age: '60', money: '77000' },
+  { age: '61', money: '77500' },
+  { age: '62', money: '78000' },
+  { age: '63', money: '60000' },
+  { age: '64', money: '40000' },
+  { age: '65', money: '40000' },
+  { age: '66', money: '40000' },
+  { age: '67', money: '40000' },
+  { age: '68', money: '40000' },
+  { age: '69', money: '40000' },
+  { age: '70', money: '40000' },
+  { age: '71', money: '40000' },
+  { age: '72', money: '40000' },
+  { age: '73', money: '40000' },
+  { age: '74', money: '40000' },
+  { age: '75', money: '40000' },
+  { age: '76', money: '40000' },
+  { age: '77', money: '40000' },
+  { age: '78', money: '40000' },
+  { age: '79', money: '40000' },
+  { age: '80', money: '40000' },
+  { age: '81', money: '40000' },
+  { age: '82', money: '40000' },
+  { age: '83', money: '40000' },
+  { age: '84', money: '40000' },
+  { age: '85', money: '40000' }
+];
+
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -46,6 +102,18 @@ const MARGINS = {
 export class GraphComponent implements OnInit, AfterViewInit {
   @ViewChild('chart')
   chart: ElementRef;
+
+  @ViewChild('graphHolder')
+  graphHolder: ElementRef;
+
+  width = 600;
+  height = 500;
+  margins = {
+    top: 20,
+    right: 20,
+    bottom: 20,
+    left: 80
+  };
 
   visualChart: any;
 
@@ -57,17 +125,25 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   lineGen: any;
 
-  constructor() {}
-  ngOnInit() {
+  constructor(private _cd: ChangeDetectorRef) {}
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.width = this.graphHolder.nativeElement.offsetWidth;
+
+    this.initChart();
+  }
+
+  initChart() {
     this.xScale = d3
       .scaleLinear()
-      .range([MARGINS.left, WIDTH - MARGINS.right])
+      .range([this.margins.left, this.width - this.margins.right])
       .domain([50, 85]);
 
     this.yScale = d3
       .scaleLinear()
-      .range([HEIGHT - MARGINS.top, MARGINS.bottom])
-      .domain([40000, 100000]);
+      .range([this.height - this.margins.top, this.margins.bottom])
+      .domain([30000, 100000]);
 
     this.xAxis = d3.axisBottom(this.xScale);
 
@@ -75,38 +151,53 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
     this.lineGen = d3
       .line()
-      .x( (d: any) => {
-        console.log(d);
-
+      .x((d: any) => {
         return this.xScale(d.age);
       })
-      .y( (d: any) => {
+      .y((d: any) => {
         return this.yScale(d.money);
       });
-  }
-
-  ngAfterViewInit() {
-    console.log(this.chart.nativeElement);
-
-    this.visualChart = d3.select(this.chart.nativeElement);
+ 
+    this.visualChart = d3.select(this.graphHolder.nativeElement)
+    .append('svg')
+    .attr('id', 'svg')
+    .attr('width', this.width)
+    .attr('height', 500);
 
     this.visualChart
       .append('svg:g')
       .attr('class', 'axis')
-      .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+      .attr(
+        'transform',
+        'translate(0,' + (this.height - this.margins.bottom) + ')'
+      )
       .call(this.xAxis);
 
     this.visualChart
       .append('svg:g')
       .attr('class', 'axis')
-      .attr('transform', 'translate(' + MARGINS.left + ',0)')
+      .attr('transform', 'translate(' + this.margins.left + ',0)')
       .call(this.yAxis);
 
-      this.visualChart
+    this.visualChart
       .append('svg:path')
-      .attr('d', this.lineGen(chartData))
-      .attr('stroke', 'green')
+      .attr('d', this.lineGen(chartData1))
+      .attr('stroke', '#ffd500')
       .attr('stroke-width', 2)
       .attr('fill', 'none');
+
+    this.visualChart
+      .append('svg:path')
+      .attr('d', this.lineGen(chartData2))
+      .attr('stroke', '#5cb85c')
+      .attr('stroke-width', 2)
+      .attr('fill', 'none');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    d3.select('svg').remove();
+    this.width = this.graphHolder.nativeElement.offsetWidth;
+      this.initChart();
   }
 }
