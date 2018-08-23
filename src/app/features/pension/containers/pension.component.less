@@ -2,38 +2,38 @@
 @import './../../../../assets/styles/base/mixins';
 
 :host {
-  @media @tablets {
-    display: flex;
-  }
-
-  @media @phones-landscape {
-    display: flex;
-  }
-
-  app-pension-description,
-  app-pension-checker {
-    background: @white;
-    padding: 20px;
-    border: 1px solid @gray-lighter;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  }
-
-  app-pension-description {
-    margin: 10px 0 0;
-
     @media @tablets {
-      width: 300px;
-      margin: 0 0 0 10px;
+        display: flex;
     }
 
     @media @phones-landscape {
-      width: 200px;
-      margin: 0 0 0 10px;
+        display: flex;
     }
-  }
 
-  app-pension-checker {
-    flex: auto;
-  }
+    app-pension-description,
+    app-pension-checker {
+        background: @white;
+        padding: 20px;
+        border: 1px solid @gray-lighter;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    app-pension-description {
+        margin: 10px 0 0;
+
+        @media @tablets {
+            width: 300px;
+            margin: 0 0 0 10px;
+        }
+
+        @media @phones-landscape {
+            width: 200px;
+            margin: 0 0 0 10px;
+        }
+    }
+
+    app-pension-checker {
+        flex: auto;
+    }
 }
