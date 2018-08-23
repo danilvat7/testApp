@@ -8,11 +8,15 @@ import { PensionRoutingModule } from './pension-routing.module';
 import { PensionComponent } from './containers/pension.component';
 
 // components
-import { PensionCheckerComponent } from './components';
-import { PensionDescriptionComponent } from "./components/pension-description/pension-description.component";
+import { PensionCheckerComponent, PensionDescriptionComponent, GraphComponent } from './components';
 
 @NgModule({
   imports: [CommonModule, PensionRoutingModule],
-  declarations: [PensionComponent, PensionCheckerComponent, PensionDescriptionComponent]
+  declarations: [
+    PensionComponent,
+    PensionCheckerComponent,
+    PensionDescriptionComponent,
+    GraphComponent
+  ]
 })
 export class PensionModule {}
